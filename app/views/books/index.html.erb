@@ -1,0 +1,28 @@
+<h1>Books</h1>
+
+<table class="w-full mt-4 border border-gray-300">
+  <thead>
+  <tr>
+    <th class="px-4 py-2 border-b">Name</th>
+    <th class="px-4 py-2 border-b">Price</th>
+    <th class="px-4 py-2 border-b">Category</th>
+    <th class="px-4 py-2 border-b">Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @books.each do |book| %>
+    <tr>
+      <td class="px-4 py-2 border-b"><%= book.name %></td>
+      <td class="px-4 py-2 border-b"><%= number_to_currency(book.price) %></td>
+      <td class="px-4 py-2 border-b"><%= book.category.name %></td>
+      <td class="px-4 py-2 border-b">
+        <%= link_to 'Show', book_path(book), class: "text-blue-500 hover:underline" %>
+        <%= link_to 'Edit', edit_book_path(book), class: "text-blue-500 hover:underline" %>
+        <%= link_to 'Destroy', book_path(book), method: :delete, data: { confirm: 'Are you sure?' }, class: "text-red-500 hover:underline" %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'New Book', new_book_path, class: "mt-4 inline-block bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600" %>

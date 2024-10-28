@@ -1,0 +1,19 @@
+<h1><%= @book.name %></h1>
+
+<div class="mt-4">
+  <% if @book.image.attached? %>
+    <%= image_tag @book.image, class: "w-64 h-auto mb-4" %>
+  <% end %>
+
+  <p><strong>Author(s):</strong> <%= @book.authors.map(&:name).join(", ") %></p>
+  <p><strong>Category:</strong> <%= @book.category.name %></p>
+  <p><strong>Price:</strong> <%= number_to_currency(@book.price) %></p>
+  <p><strong>Page Count:</strong> <%= @book.page_count %></p>
+  <p><strong>Description:</strong> <%= @book.description %></p>
+  <p><strong>Contents:</strong> <%= @book.contents %></p>
+</div>
+
+<div class="mt-4">
+  <%= link_to 'Edit', edit_book_path(@book), class: "bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600" %>
+  <%= link_to 'Back', books_path, class: "ml-2 bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600" %>
+</div>

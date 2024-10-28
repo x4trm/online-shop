@@ -1,0 +1,46 @@
+<div class="container mx-auto p-6 space-y-12">
+
+  <div class="hero-slider bg-gray-200 rounded-lg shadow-lg overflow-hidden">
+    <% if @promotions.any? %>
+      <div class="slider-container">
+        <% @promotions.each do |promotion| %>
+          <div class="slide">
+            <h2 class="text-2xl font-bold"><%= promotion.title %></h2>
+            <p><%= promotion.description %></p>
+            <%= image_tag promotion.image if promotion.image.attached? %>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <p class="text-center text-gray-600">No active promotions at the moment.</p>
+    <% end %>
+  </div>
+
+
+  <section class="bestsellers mt-8">
+    <h2 class="text-3xl font-bold mb-4">Bestsellers</h2>
+    <div class="grid grid-cols-3 gap-4">
+      <% @bestsellers.each do |book| %>
+        <div class="bg-white p-4 rounded-lg shadow-md">
+          <h3 class="text-xl font-semibold"><%= book.name %></h3>
+          <p><%= book.description.truncate(100) %></p>
+          <p class="text-sm text-gray-500"><%= book.authors.map(&:name).join(", ") %></p>
+        </div>
+      <% end %>
+    </div>
+  </section>
+
+  <section class="recommended mt-8">
+    <h2 class="text-3xl font-bold mb-4">Recommended</h2>
+    <div class="grid grid-cols-3 gap-4">
+      <% @recommended.each do |book| %>
+        <div class="bg-white p-4 rounded-lg shadow-md">
+          <h3 class="text-xl font-semibold"><%= book.name %></h3>
+          <p><%= book.description.truncate(100) %></p>
+          <p class="text-sm text-gray-500"><%= book.authors.map(&:name).join(", ") %></p>
+        </div>
+      <% end %>
+    </div>
+  </section>
+
+</div>

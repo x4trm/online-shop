@@ -1,0 +1,38 @@
+<%= form_with(model: book, local: true) do |form| %>
+  <div class="mb-4">
+    <%= form.label :name, class: "block text-gray-700" %>
+    <%= form.text_field :name, class: "w-full px-4 py-2 border border-gray-300 rounded mt-2" %>
+  </div>
+
+  <div class="mb-4">
+    <%= form.label :price, class: "block text-gray-700" %>
+    <%= form.number_field :price, step: 0.01, class: "w-full px-4 py-2 border border-gray-300 rounded mt-2" %>
+  </div>
+
+  <div class="mb-4">
+    <%= form.label :category_id, "Category", class: "block text-gray-700" %>
+    <%= form.collection_select :category_id, Category.all, :id, :name, { prompt: "Select a Category" }, class: "w-full px-4 py-2 border border-gray-300 rounded mt-2" %>
+  </div>
+
+  <div class="mb-4">
+    <%= form.label :page_count, class: "block text-gray-700" %>
+    <%= form.number_field :page_count, class: "w-full px-4 py-2 border border-gray-300 rounded mt-2" %>
+  </div>
+
+  <div class="mb-4">
+    <%= form.label :description, class: "block text-gray-700" %>
+    <%= form.text_area :description, class: "w-full px-4 py-2 border border-gray-300 rounded mt-2" %>
+  </div>
+
+  <div class="mb-4">
+    <%= form.label :contents, "Table of Contents", class: "block text-gray-700" %>
+    <%= form.text_area :contents, class: "w-full px-4 py-2 border border-gray-300 rounded mt-2" %>
+  </div>
+
+  <div class="mb-4">
+    <%= form.label :image, class: "block text-gray-700" %>
+    <%= form.file_field :image, class: "w-full px-4 py-2 border border-gray-300 rounded mt-2" %>
+  </div>
+
+  <%= form.submit class: "bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600" %>
+<% end %>
