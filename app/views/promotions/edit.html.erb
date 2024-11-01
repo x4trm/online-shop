@@ -1,0 +1,27 @@
+<h1 class="text-3xl font-bold mb-4"><%= action_name.capitalize %> Promotion</h1>
+
+<%= form_with(model: @promotion, local: true) do |form| %>
+  <div class="mb-4">
+    <%= form.label :title, class: "block text-gray-700" %>
+    <%= form.text_field :title, class: "mt-1 block w-full" %>
+  </div>
+
+  <div class="mb-4">
+    <%= form.label :description, class: "block text-gray-700" %>
+    <%= form.text_area :description, class: "mt-1 block w-full" %>
+  </div>
+
+  <div class="mb-4">
+    <%= form.label :image, class: "block text-gray-700" %>
+    <%= form.file_field :image, class: "mt-1 block w-full" %>
+  </div>
+
+  <div class="mb-4">
+    <%= form.label :active, class: "block text-gray-700" %>
+    <%= form.check_box :active, class: "mt-1" %>
+  </div>
+
+  <div class="mt-4">
+    <%= form.submit class: "btn btn-primary" %>
+  </div>
+<% end %>

@@ -7,11 +7,13 @@
     <ul class="space-y-4">
       <% @category.books.each do |book| %>
         <li class="p-4 bg-gray-50 rounded-lg border border-gray-200">
-          <h2 class="text-xl font-semibold text-gray-800"><%= book.name %></h2>
-          <p class="text-gray-600"><strong>Author(s):</strong> <%= book.authors.map(&:name).join(", ") %></p>
-          <p class="text-gray-600"><strong>Page Count:</strong> <%= book.page_count %> pages</p>
-          <p class="text-gray-600"><strong>Description:</strong> <%= book.description %></p>
-          <p class="text-gray-600"><strong>Contents:</strong> <%= book.contents %></p>
+          <%= link_to book_path(book.slug), class: "block text-gray-800" do %>
+            <h2 class="text-xl font-semibold text-gray-800"><%= book.name %></h2>
+            <p class="text-gray-600"><strong>Author(s):</strong> <%= book.authors.map(&:name).join(", ") %></p>
+            <p class="text-gray-600"><strong>Page Count:</strong> <%= book.page_count %> pages</p>
+            <p class="text-gray-600"><strong>Description:</strong> <%= book.description %></p>
+            <p class="text-gray-600"><strong>Contents:</strong> <%= book.contents %></p>
+          <% end %>
         </li>
       <% end %>
     </ul>

@@ -1,17 +1,19 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <title>OnlineShop</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
   <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
   <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
   <%= javascript_importmap_tags %>
   <%= javascript_include_tag "home_slider", defer: true %>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 </head>
 
-<body class="">
+<body>
 <header class="bg-gray-800 text-white py-4 px-6">
   <nav class="flex justify-between items-center">
     <div class="flex space-x-4">
@@ -25,10 +27,10 @@
   </nav>
 </header>
 
-<div class="container px-4 flex mt-5">
-  <aside class="w-1/5 p-4 rounded-lg mr-6">
+<div class="flex container mx-auto mt-5 px-4 flex-col md:flex-row">
+  <aside class="w-full md:w-1/4 p-4 mr-0 md:mr-6 mb-4 md:mb-0">
     <h2 class="text-lg font-semibold mb-4">Categories</h2>
-    <ul>
+    <ul class="text-left">
       <% Category.all.each do |category| %>
         <li class="mb-2">
           <%= link_to category.name, category_path(category.slug), class: "hover:underline" %>
@@ -37,7 +39,7 @@
     </ul>
   </aside>
 
-  <main class="flex-grow p-6">
+  <main class="flex-grow p-6 bg-white rounded-lg shadow-md">
     <%= yield %>
   </main>
 </div>

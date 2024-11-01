@@ -1,25 +1,31 @@
 <div class="container mx-auto p-6 space-y-12">
 
-  <div class="hero-slider bg-gray-200 rounded-lg shadow-lg overflow-hidden">
+  <div class="swiper mySwiper">
     <% if @promotions.any? %>
-      <div class="slider-container">
+      <div class="swiper-wrapper">
         <% @promotions.each do |promotion| %>
-          <div class="slide">
+          <div class="swiper-slide text-center">
             <h2 class="text-2xl font-bold"><%= promotion.title %></h2>
             <p><%= promotion.description %></p>
-            <%= image_tag promotion.image if promotion.image.attached? %>
+            <% if promotion.image.attached? %>
+              <%= image_tag promotion.image, class: "w-full h-auto object-cover" %>
+            <% end %>
           </div>
         <% end %>
       </div>
+      <div class="swiper-pagination"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+
+      <div class="swiper-scrollbar"></div>
     <% else %>
       <p class="text-center text-gray-600">No active promotions at the moment.</p>
     <% end %>
   </div>
 
-
   <section class="bestsellers mt-8">
-    <h2 class="text-3xl font-bold mb-4">Bestsellers</h2>
-    <div class="grid grid-cols-3 gap-4">
+    <h2 class="text-3xl font-bold mb-4 text-center">Bestsellers</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
       <% @bestsellers.each do |book| %>
         <div class="bg-white p-4 rounded-lg shadow-md">
           <h3 class="text-xl font-semibold"><%= book.name %></h3>
@@ -31,8 +37,8 @@
   </section>
 
   <section class="recommended mt-8">
-    <h2 class="text-3xl font-bold mb-4">Recommended</h2>
-    <div class="grid grid-cols-3 gap-4">
+    <h2 class="text-3xl font-bold mb-4 text-center">Recommended</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
       <% @recommended.each do |book| %>
         <div class="bg-white p-4 rounded-lg shadow-md">
           <h3 class="text-xl font-semibold"><%= book.name %></h3>
@@ -44,3 +50,26 @@
   </section>
 
 </div>
+
+<script type="module">
+    import Swiper from 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.mjs'
+
+    const swiper = new Swiper('.swiper', {
+        direction: 'horizontal',
+        loop: true,
+
+        pagination: {
+            el: '.swiper-pagination',
+        },
+
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+
+        scrollbar: {
+            el: '.swiper-scrollbar',
+        },
+
+    });
+</script>

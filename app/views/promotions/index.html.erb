@@ -1,0 +1,30 @@
+<h1 class="text-3xl font-bold mb-4">Promotions</h1>
+<%= link_to 'New Promotion', new_promotion_path, class: "btn btn-primary mb-4" %>
+<table class="table-auto w-full">
+  <thead>
+  <tr>
+    <th class="px-4 py-2">Title</th>
+    <th class="px-4 py-2">Description</th>
+    <th class="px-4 py-2">Image</th>
+    <th class="px-4 py-2">Active</th>
+    <th class="px-4 py-2">Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @promotions.each do |promotion| %>
+    <tr>
+      <td class="border px-4 py-2"><%= promotion.title %></td>
+      <td class="border px-4 py-2"><%= promotion.description %></td>
+      <td class="border px-4 py-2">
+        <%= image_tag promotion.image.variant(resize_to_limit: [100, 100]) if promotion.image.attached? %>
+      </td>
+      <td class="border px-4 py-2"><%= promotion.active ? 'Yes' : 'No' %></td>
+      <td class="border px-4 py-2">
+        <%= link_to 'Edit', edit_promotion_path(promotion), class: "btn btn-secondary" %>
+        <%= link_to 'Delete', promotion_path(promotion), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+        <%= link_to (promotion.active ? 'Deactivate' : 'Activate'), toggle_active_promotion_path(promotion), method: :patch, class: "btn btn-warning" %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
