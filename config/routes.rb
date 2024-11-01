@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root "home#index"
-  resources :categories
   resources :authors
-  resources :books
+  resources :categories, param: :slug
+  resources :books, param: :slug
 end

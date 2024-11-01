@@ -6,6 +6,7 @@ class CategoriesController < ApplicationController
   end
 
   def show
+    @books = @category.books
   end
 
   def new
@@ -40,10 +41,10 @@ class CategoriesController < ApplicationController
   private
 
   def set_category
-    @category = Category.find(params[:id])
+    @category = Category.find_by!(slug: params[:slug])
   end
 
   def category_params
-    params.require(:category).permit(:name)
+    params.require(:category).permit(:name, :slug)
   end
 end

@@ -2,7 +2,7 @@ class BooksController < ApplicationController
   before_action :set_book, only: [:show, :edit, :update, :destroy]
 
   def index
-    @books = Book.include(:authors, :category).all
+    @books = Book.includes(:authors, :category).all
   end
 
   def show
@@ -27,7 +27,7 @@ class BooksController < ApplicationController
 
   def edit
     @categories = Category.all
-    @author = Author.all
+    @authors = Author.all
   end
 
   def update
@@ -48,10 +48,10 @@ class BooksController < ApplicationController
   private
 
   def set_book
-    @book = Book.includes(:authors, :category).find(params[:id])
+    @book = Book.includes(:authors, :category).find_by(slug: params[:slug])
   end
 
   def book_params
-    params.require(:book).permit(:name, :description, :page_count, :contents, :category_id, author_ids: [])
+    params.require(:book).permit(:name, :description, :page_count, :contents, :category_id, :slug, author_ids: [])
   end
 end

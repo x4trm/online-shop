@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_10_28_210753) do
+ActiveRecord::Schema[7.0].define(version: 2024_10_31_193640) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -65,13 +65,17 @@ ActiveRecord::Schema[7.0].define(version: 2024_10_28_210753) do
     t.boolean "bestseller", default: false
     t.boolean "recommended", default: false
     t.decimal "price", precision: 8, scale: 2
+    t.string "slug"
     t.index ["category_id"], name: "index_books_on_category_id"
+    t.index ["slug"], name: "index_books_on_slug", unique: true
   end
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "slug"
+    t.index ["slug"], name: "index_categories_on_slug", unique: true
   end
 
   create_table "promotions", force: :cascade do |t|
