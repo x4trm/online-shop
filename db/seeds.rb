@@ -1,6 +1,7 @@
 Book.destroy_all
 Author.destroy_all
 Category.destroy_all
+User.destroy_all
 
 fiction = Category.create(name: "Fiction", slug: "fiction")
 non_fiction = Category.create(name: "Non-Fiction", slug: "non-fiction")
@@ -34,5 +35,25 @@ authors = [author1, author2, author3, author4, author5, author6, author7, author
 
   book.authors << authors.sample(rand(1..3))
 end
+admin = User.create!(
+  email: 'admin@example.com',
+  password: 'password',
+  password_confirmation: 'password',
+  first_name: 'Admin',
+  last_name: 'User',
+  phone_number: '123456789',
+  address: 'Admin Address',
+  role: 'admin'
+)
 
+user = User.create!(
+  email: 'user@example.com',
+  password: 'password',
+  password_confirmation: 'password',
+  first_name: 'User',
+  last_name: 'Last User',
+  phone_number: '987654321',
+  address: 'User Address',
+  role: 'user'
+)
 puts "Seeding completed successfully!"

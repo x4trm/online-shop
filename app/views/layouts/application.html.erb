@@ -21,8 +21,12 @@
       <%#= link_to 'Blog', blog_path, class: "hover:underline text-white" %>
     </div>
     <div class="flex space-x-4">
-      <%#= link_to 'Cart', cart_path, class: "hover:underline text-white" %>
-      <%#= link_to 'Login', login_path, class: "hover:underline text-white" %>
+      <% if user_signed_in? %>
+        <%= link_to 'Profile', edit_user_registration_path, class: "hover:underline text-white" %>
+        <%= link_to 'Logout', destroy_user_session_path, method: :delete, data: { turbo_method: :delete }, class: "hover:underline text-white" %>
+      <% else %>
+        <%= link_to 'Login', new_user_session_path, class: "hover:underline text-white" %>
+      <% end %>
     </div>
   </nav>
 </header>
