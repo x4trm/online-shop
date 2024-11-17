@@ -27,7 +27,7 @@ class BooksController < ApplicationController
 
   def edit
     @categories = Category.all
-    @authors = Author.all
+    @book.authors.build if @book.authors.empty?
   end
 
   def update
@@ -35,7 +35,6 @@ class BooksController < ApplicationController
       redirect_to @book, notice: 'Book was successfully updated.'
     else
       @categories = Category.all
-      @authors = Author.all
       render :edit
     end
   end
@@ -52,6 +51,6 @@ class BooksController < ApplicationController
   end
 
   def book_params
-    params.require(:book).permit(:name, :description, :page_count, :contents, :category_id, :slug, author_ids: [])
+    params.require(:book).permit(:name, :description, :page_count, :contents, :category_id, :slug, :price, :image, author_ids: [])
   end
 end

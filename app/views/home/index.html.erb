@@ -1,7 +1,6 @@
 <div class="container mx-auto p-6 space-y-12">
-
+  <% if @promotions.any? %>
   <div class="swiper mySwiper">
-    <% if @promotions.any? %>
       <div class="swiper-wrapper">
         <% @promotions.each do |promotion| %>
           <div class="swiper-slide text-center">
@@ -18,19 +17,25 @@
       <div class="swiper-button-next"></div>
 
       <div class="swiper-scrollbar"></div>
+    </div>
     <% else %>
       <p class="text-center text-gray-600">No active promotions at the moment.</p>
-    <% end %>
-  </div>
+  <% end %>
 
   <section class="bestsellers mt-8">
     <h2 class="text-3xl font-bold mb-4 text-center">Bestsellers</h2>
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
       <% @bestsellers.each do |book| %>
-        <div class="bg-white p-4 rounded-lg shadow-md">
-          <h3 class="text-xl font-semibold"><%= book.name %></h3>
-          <p><%= book.description.truncate(100) %></p>
-          <p class="text-sm text-gray-500"><%= book.authors.map(&:name).join(", ") %></p>
+        <div class="bg-white rounded-lg border border-gray-200 p-6 shadow-sm">
+          <%= link_to book_path(book.slug), class: "block text-gray-800" do %>
+            <% if book.image.attached? %>
+              <div class="mb-4">
+                <%= image_tag book.image, class: "w-full h-auto rounded-lg" %>
+              </div>
+            <% end %>
+            <h2 class="text-xl font-semibold text-gray-800 mb-2"><%= book.name %></h2>
+            <p class="text-gray-600 mb-2"><strong>Price:</strong> <%= number_to_currency(book.price) %></p>
+          <% end %>
         </div>
       <% end %>
     </div>
@@ -40,10 +45,16 @@
     <h2 class="text-3xl font-bold mb-4 text-center">Recommended</h2>
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
       <% @recommended.each do |book| %>
-        <div class="bg-white p-4 rounded-lg shadow-md">
-          <h3 class="text-xl font-semibold"><%= book.name %></h3>
-          <p><%= book.description.truncate(100) %></p>
-          <p class="text-sm text-gray-500"><%= book.authors.map(&:name).join(", ") %></p>
+        <div class="bg-white rounded-lg border border-gray-200 p-6 shadow-sm">
+          <%= link_to book_path(book.slug), class: "block text-gray-800" do %>
+            <% if book.image.attached? %>
+              <div class="mb-4">
+                <%= image_tag book.image, class: "w-full h-auto rounded-lg" %>
+              </div>
+            <% end %>
+            <h2 class="text-xl font-semibold text-gray-800 mb-2"><%= book.name %></h2>
+            <p class="text-gray-600 mb-2"><strong>Price:</strong> <%= number_to_currency(book.price) %></p>
+          <% end %>
         </div>
       <% end %>
     </div>
