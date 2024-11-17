@@ -1,5 +1,7 @@
 class BooksController < ApplicationController
   before_action :set_book, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:show]
+  before_action :check_admin, only: [:edit, :update, :destroy, :index]
 
   def index
     @books = Book.includes(:authors, :category).all
@@ -51,6 +53,10 @@ class BooksController < ApplicationController
   end
 
   def book_params
-    params.require(:book).permit(:name, :description, :page_count, :contents, :category_id, :slug, :price, :image, author_ids: [])
+    params.require(:book).permit(:name, :description, :page_count, :contents, :category_id, :slug, :price, :image, :recommended, :bestseller, author_ids: [])
+  end
+
+  def check_admin
+    redirect_to root_path, alert: 'You are not authorized to perform this action.' unless current_user.admin? 
   end
 end

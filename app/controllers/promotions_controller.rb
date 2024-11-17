@@ -1,5 +1,7 @@
 class PromotionsController < ApplicationController
   before_action :set_promotion, only: [:show, :edit, :update, :destroy, :toggle_active]
+  before_action :authenticate_user!
+  before_action :check_admin
 
   def index
     @promotions = Promotion.all
@@ -50,5 +52,9 @@ class PromotionsController < ApplicationController
 
   def promotion_params
     params.require(:promotion).permit(:title, :description, :image, :active)
+  end
+
+  def check_admin
+    redirect_to root_path, alert: 'You are not authorized to perform this action.' unless current_user.admin? 
   end
 end
