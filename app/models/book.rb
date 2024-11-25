@@ -18,6 +18,6 @@ class Book < ApplicationRecord
   private
 
   def generate_slug
-    self.slug ||= name.parametrize
+    self.slug ||= name.parameterize
   end
 end

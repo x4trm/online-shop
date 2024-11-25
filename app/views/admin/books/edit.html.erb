@@ -1,0 +1,54 @@
+<div class="container mx-auto p-4">
+  <h1 class="text-4xl font-bold mb-6">Edit Book</h1>
+  
+  <%= form_with(model: [:admin, @book], local: true) do |form| %>
+    <div class="mb-4">
+      <%= form.label :name, class: "block text-gray-700" %>
+      <%= form.text_field :name, class: "form-input mt-1 block w-full" %>
+    </div>
+
+    <div class="mb-4">
+      <%= form.label :description, class: "block text-gray-700" %>
+      <%= form.text_area :description, class: "form-textarea mt-1 block w-full" %>
+    </div>
+
+    <div class="mb-4">
+      <%= form.label :page_count, class: "block text-gray-700" %>
+      <%= form.number_field :page_count, class: "form-input mt-1 block w-full" %>
+    </div>
+
+    <div class="mb-4">
+      <%= form.label :contents, class: "block text-gray-700" %>
+      <%= form.text_area :contents, class: "form-textarea mt-1 block w-full" %>
+    </div>
+
+    <div class="mb-4">
+      <%= form.label :price, class: "block text-gray-700" %>
+      <%= form.number_field :price, class: "form-input mt-1 block w-full" %>
+    </div>
+
+    <div class="mb-4">
+      <%= form.label :category_id, class: "block text-gray-700" %>
+      <%= form.collection_select :category_id, Category.all, :id, :name, {}, { class: "form-select mt-1 block w-full" } %>
+    </div>
+
+    <div class="mb-4">
+      <%= form.label :image, class: "block text-gray-700" %>
+      <%= form.file_field :image, class: "form-input mt-1 block w-full" %>
+    </div>
+
+    <div class="mb-4">
+      <%= form.label :recommended, class: "block text-gray-700" %>
+      <%= form.check_box :recommended, class: "form-checkbox mt-1 block" %>
+    </div>
+
+    <div class="mb-4">
+      <%= form.label :bestseller, class: "block text-gray-700" %>
+      <%= form.check_box :bestseller, class: "form-checkbox mt-1 block" %>
+    </div>
+
+    <div class="mt-6">
+      <%= form.submit "Update Book", class: "px-4 py-2 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700" %>
+    </div>
+  <% end %>
+</div>

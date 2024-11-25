@@ -1,13 +1,16 @@
-class AdminsController < ApplicationController
-  efore_action :authenticate_user!
+class Admin::AdminsController < ApplicationController
+  before_action :authenticate_user!
   before_action :admin_only
+
   def index
   end
 
   def manage_users
+    @users = User.all
   end
 
   def manage_books
+    @books = Book.all
   end
 
   private
