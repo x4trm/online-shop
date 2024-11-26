@@ -31,5 +31,7 @@
   <% if user_signed_in? && current_user.role == "admin" %>
     <%= link_to 'Edit', edit_book_path(@book), class: "bg-blue-500 text-white px-6 py-3 rounded-full hover:bg-blue-600" %>
   <% end %>
+  <%= link_to 'Add to Cart', add_to_cart_cart_path(book_id: @book.id), method: :post, data: { turbo_method: :post }, class: "bg-blue-500 text-white px-6 py-3 rounded-full hover:bg-blue-600" %>
   <%= link_to 'Back', category_path(@book.category.slug), class: "ml-4 bg-gray-500 text-white px-6 py-3 rounded-full hover:bg-gray-600" %>
 </div>
+
