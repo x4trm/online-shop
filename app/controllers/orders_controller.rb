@@ -9,10 +9,15 @@ class OrdersController < ApplicationController
     @order.cart = current_cart
 
     if @order.save
-      redirect_to order_path(@order), notice: 'Order successfully created!'
+      current_cart.cart_items.destroy_all
+      redirect_to confirmation_order_path(@order), notice: 'Order successfully created!'
     else
       render :new
     end
+  end
+
+  def confirmation
+    @order = Order.find(params[:id])
   end
 
   private

@@ -25,8 +25,15 @@ Rails.application.routes.draw do
     resources :books, only: [:index, :new, :create, :edit, :update, :destroy], param: :slug
     root to: 'admins#index'
   end
+
   resource :cart, only: [:show] do
     post 'add_to_cart', on: :collection
     post 'remove_from_cart', on: :collection
+  end
+
+  resources :orders, only: [:new, :create] do
+    member do
+      get 'confirmation'
+    end
   end
 end

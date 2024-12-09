@@ -1,0 +1,10 @@
+<h1 class="text-4xl font-bold mb-6 text-center">Order Confirmation</h1>
+
+<div class="bg-white p-6">
+  <p class="text-center text-xl">Thank you for your order!</p>
+  <p class="text-center">Your order number is <strong><%= @order.id %></strong>.</p>
+  <p class="text-center">We will send a confirmation email to <strong><%= @order.email %></strong> shortly.</p>
+  <div class="text-center mt-6">
+    <%= link_to 'Continue Shopping', root_path, class: "bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-600" %>
+  </div>
+</div>
