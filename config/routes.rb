@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :users, only: [:index, :edit, :update, :destroy]
     resources :books, only: [:index, :new, :create, :edit, :update, :destroy], param: :slug
+    resources :orders, only: [:index, :show]
     root to: 'admins#index'
   end
 
