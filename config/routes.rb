@@ -6,6 +6,9 @@ Rails.application.routes.draw do
 
   root "home#index"
 
+  get 'checkout', to: 'orders#new'
+  post 'checkout', to: 'orders#create'
+  
   resources :promotions do
     member do
       patch :toggle_active

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_11_26_195936) do
+ActiveRecord::Schema[7.0].define(version: 2024_12_09_193149) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -96,6 +96,17 @@ ActiveRecord::Schema[7.0].define(version: 2024_11_26_195936) do
     t.index ["slug"], name: "index_categories_on_slug", unique: true
   end
 
+  create_table "orders", force: :cascade do |t|
+    t.string "name"
+    t.string "address"
+    t.string "email"
+    t.string "pay_type"
+    t.integer "cart_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cart_id"], name: "index_orders_on_cart_id"
+  end
+
   create_table "promotions", force: :cascade do |t|
     t.boolean "active"
     t.datetime "created_at", null: false
@@ -129,4 +140,5 @@ ActiveRecord::Schema[7.0].define(version: 2024_11_26_195936) do
   add_foreign_key "cart_items", "books"
   add_foreign_key "cart_items", "carts"
   add_foreign_key "carts", "users"
+  add_foreign_key "orders", "carts"
 end

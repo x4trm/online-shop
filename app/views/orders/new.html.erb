@@ -1,0 +1,29 @@
+<h1 class="text-4xl font-bold mb-6 text-center">Checkout</h1>
+
+<div class="flex flex-col bg-white p-6">
+  <%= form_with model: @order, url: checkout_path, method: :post, local: true do |f| %>
+    <div class="mb-4">
+      <%= f.label :name, "Name", class: "block text-gray-700" %>
+      <%= f.text_field :name, class: "mt-2 p-2 border rounded w-full" %>
+    </div>
+
+    <div class="mb-4">
+      <%= f.label :address, "Address", class: "block text-gray-700" %>
+      <%= f.text_field :address, class: "mt-2 p-2 border rounded w-full" %>
+    </div>
+
+    <div class="mb-4">
+      <%= f.label :email, "Email", class: "block text-gray-700" %>
+      <%= f.email_field :email, class: "mt-2 p-2 border rounded w-full" %>
+    </div>
+
+    <div class="mb-4">
+      <%= f.label :pay_type, "Payment Type", class: "block text-gray-700" %>
+      <%= f.select :pay_type, ["Credit card", "PayPal", "Bank transfer"], class: "mt-2 p-2 border rounded w-full" %>
+    </div>
+
+    <div class="mt-6 text-right">
+      <%= f.submit "Place Order", class: "bg-green-500 text-white px-4 py-2 rounded-full hover:bg-green-600" %>
+    </div>
+  <% end %>
+</div>
