@@ -7,7 +7,7 @@
     <p class="text-xl font-semibold">Email: <%= @order.email %></p>
     <p class="text-xl font-semibold">Address: <%= @order.address %></p>
     <p class="text-xl font-semibold">Payment Type: <%= @order.pay_type %></p>
-    <p class="text-xl font-semibold">Total Price: <%= number_to_currency(@order.cart.total_price) %></p>
+    <p class="text-xl font-semibold">Total Price: <%= @order.cart.total_price %></p>
   </div>
 
   <h2 class="text-3xl font-bold mb-4">Books in this Order</h2>

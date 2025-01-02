@@ -8,7 +8,7 @@ module Admin
     end
 
     def show
-      @order = Order.find(params[:id])
+      @order = Order.includes(cart: { cart_items: :book }).find(params[:id])
     end
 
     private
